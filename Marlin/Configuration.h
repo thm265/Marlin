@@ -535,14 +535,17 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 4266.66, 200}
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 4266.66, 200}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2133.33, 200}
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 160, 160, 10, 10000 }
+
+//#define DEFAULT_MAX_FEEDRATE          { 160, 160, 10, 10000 }
+#define DEFAULT_MAX_FEEDRATE          { 140, 140, 8, 10000 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -550,7 +553,8 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 6000, 6000, 75, 10000 }
+//#define DEFAULT_MAX_ACCELERATION      { 9000, 9000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 30, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -560,7 +564,12 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          4500    // X, Y, Z and E acceleration for printing moves
+
+//#define DEFAULT_ACCELERATION          6000    // X, Y, Z and E acceleration for printing moves
+//#define DEFAULT_RETRACT_ACCELERATION  6000    // E acceleration for retracts
+//#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+
+#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  6000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
@@ -572,9 +581,15 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-#define DEFAULT_XJERK                 7.5
-#define DEFAULT_YJERK                 7.5
-#define DEFAULT_ZJERK                  0.3
+
+//#define DEFAULT_XJERK                 10.0
+//#define DEFAULT_YJERK                 10.0
+//#define DEFAULT_ZJERK                  0.4
+//#define DEFAULT_EJERK                 20.0
+
+#define DEFAULT_XJERK                 6
+#define DEFAULT_YJERK                 6
+#define DEFAULT_ZJERK                 0.2
 #define DEFAULT_EJERK                 20.0
 
 //===========================================================================
@@ -754,9 +769,9 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR true
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR false
 
 // Enable this option for Toshiba stepper drivers
 //#define CONFIG_STEPPERS_TOSHIBA
