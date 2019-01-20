@@ -545,7 +545,7 @@
  */
 
 //#define DEFAULT_MAX_FEEDRATE          { 160, 160, 10, 10000 }
-#define DEFAULT_MAX_FEEDRATE          { 140, 140, 8, 10000 }
+#define DEFAULT_MAX_FEEDRATE          { 140, 140, 6.67, 10000 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -709,7 +709,7 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 4000
 
 // Speed for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -1059,9 +1059,9 @@
   #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
 
-// Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (8*60)
+// Homing speeds (mm/min)
+#define HOMING_FEEDRATE_XY (40*60)
+#define HOMING_FEEDRATE_Z  (4*60)
 
 // @section calibrate
 
