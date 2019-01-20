@@ -217,8 +217,8 @@
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
 // For the other hotends it is their distance from the extruder 0 hotend.
-#define HOTEND_OFFSET_X {0.0, 39.4} // (in mm) for each extruder, offset of the hotend on the X axis
-#define HOTEND_OFFSET_Y {0.0, 0.0}  // (in mm) for each extruder, offset of the hotend on the Y axis
+//#define HOTEND_OFFSET_X {0.0, 0.0} // (in mm) for each extruder, offset of the hotend on the X axis
+//#define HOTEND_OFFSET_Y {0.0, 0.0}  // (in mm) for each extruder, offset of the hotend on the Y axis
 
 // @section machine
 
@@ -309,7 +309,6 @@
 #define TEMP_SENSOR_3 0
 #define TEMP_SENSOR_4 0
 #define TEMP_SENSOR_BED 1
-#define TEMP_SENSOR_CHAMBER 0
 
 // Dummy thermistor constant temperature readings, for use with 998 and 999
 #define DUMMY_THERMISTOR_998_VALUE 25
@@ -321,7 +320,7 @@
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
 // Extruder temperature must be close to target for this long before M109 returns success
-#define TEMP_RESIDENCY_TIME 10  // (seconds)
+#define TEMP_RESIDENCY_TIME 10   // (seconds)
 #define TEMP_HYSTERESIS 5       // (degC) range of +/- temperatures considered "close" to the target one
 #define TEMP_WINDOW     1       // (degC) Window around target to start the residency timer x degC early.
 
@@ -373,9 +372,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  //#define DEFAULT_Kp 22.2
-  //#define DEFAULT_Ki 1.08
-  //#define DEFAULT_Kd 114
+  //#define  DEFAULT_Kp 22.2
+  //#define  DEFAULT_Ki 1.08
+  //#define  DEFAULT_Kd 114
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -391,6 +390,12 @@
   #define  DEFAULT_Kp 36.22
   #define  DEFAULT_Ki 3.01
   #define  DEFAULT_Kd 109.05
+
+  // K8400 with Hexagon
+  #define  DEFAULT_Kp 36.22
+  #define  DEFAULT_Ki 3.01
+  #define  DEFAULT_Kd 109.05
+
 
 #endif // PIDTEMP
 
@@ -515,7 +520,7 @@
 // Enable pullup for all endstops to prevent a floating state
 #define ENDSTOPPULLUPS
 #if DISABLED(ENDSTOPPULLUPS)
-  // Disable ENDSTOPPULLUPS to set pullups individually
+  // fine endstop settings: Individual pullups. will be ignored if ENDSTOPPULLUPS is defined
   #define ENDSTOPPULLUP_XMAX
   #define ENDSTOPPULLUP_YMAX
   #define ENDSTOPPULLUP_ZMAX
@@ -526,6 +531,7 @@
 #endif
 
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
+<<<<<<< HEAD
 #define X_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Y_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
 #define Z_MIN_ENDSTOP_INVERTING true // set to true to invert the logic of the endstop.
@@ -556,6 +562,15 @@
 #define E2_DRIVER_TYPE DRV8825
 #define E3_DRIVER_TYPE DRV8825
 #define E4_DRIVER_TYPE DRV8825
+=======
+#define X_MIN_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define Y_MIN_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define Z_MIN_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define X_MAX_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define Y_MAX_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define Z_MAX_ENDSTOP_INVERTING true  // set to true to invert the logic of the endstop.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true  // set to true to invert the logic of the probe.
+>>>>>>> develop
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
@@ -603,14 +618,25 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
+<<<<<<< HEAD
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 4266.66, 200 }
+=======
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 160, 160, 4266.66, 200}
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 2133.33, 200}
+>>>>>>> develop
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
+<<<<<<< HEAD
 #define DEFAULT_MAX_FEEDRATE          { 160, 160, 10, 10000 }
+=======
+
+//#define DEFAULT_MAX_FEEDRATE          { 160, 160, 10, 10000 }
+#define DEFAULT_MAX_FEEDRATE          { 140, 140, 6.67, 10000 }
+>>>>>>> develop
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -618,7 +644,12 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
  */
+<<<<<<< HEAD
 #define DEFAULT_MAX_ACCELERATION      { 9000, 9000, 100, 10000 }
+=======
+//#define DEFAULT_MAX_ACCELERATION      { 9000, 9000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 4000, 4000, 30, 10000 }
+>>>>>>> develop
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -628,7 +659,16 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
+<<<<<<< HEAD
 #define DEFAULT_ACCELERATION          6000    // X, Y, Z and E acceleration for printing moves
+=======
+
+//#define DEFAULT_ACCELERATION          6000    // X, Y, Z and E acceleration for printing moves
+//#define DEFAULT_RETRACT_ACCELERATION  6000    // E acceleration for retracts
+//#define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
+
+#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
+>>>>>>> develop
 #define DEFAULT_RETRACT_ACCELERATION  6000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
@@ -640,6 +680,7 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
+<<<<<<< HEAD
 #define DEFAULT_XJERK                 10.0
 #define DEFAULT_YJERK                 10.0
 #define DEFAULT_ZJERK                  0.4
@@ -654,6 +695,18 @@
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
 //#define S_CURVE_ACCELERATION
+=======
+
+//#define DEFAULT_XJERK                 10.0
+//#define DEFAULT_YJERK                 10.0
+//#define DEFAULT_ZJERK                  0.4
+//#define DEFAULT_EJERK                 20.0
+
+#define DEFAULT_XJERK                 6
+#define DEFAULT_YJERK                 6
+#define DEFAULT_ZJERK                 0.2
+#define DEFAULT_EJERK                 20.0
+>>>>>>> develop
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -779,7 +832,7 @@
 #define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 8000
+#define XY_PROBE_SPEED 4000
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -843,9 +896,18 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
+<<<<<<< HEAD
 #define INVERT_X_DIR false
 #define INVERT_Y_DIR true
 #define INVERT_Z_DIR true
+=======
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR false
+
+// Enable this option for Toshiba stepper drivers
+//#define CONFIG_STEPPERS_TOSHIBA
+>>>>>>> develop
 
 // @section extruder
 
@@ -860,8 +922,11 @@
 
 //#define NO_MOTION_BEFORE_HOMING  // Inhibit movement until all axes have been homed
 
+<<<<<<< HEAD
 //#define UNKNOWN_Z_NO_RAISE // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
+=======
+>>>>>>> develop
 #define Z_HOMING_HEIGHT 4  // (in mm) Minimal z height before homing (G28) for Z clearance above the bed, clamps, ...
                              // Be sure you have this distance over your Z_MAX_POS in case.
 
@@ -897,17 +962,17 @@
 // Min software endstops constrain movement within minimum coordinate bounds
 #define MIN_SOFTWARE_ENDSTOPS
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
-  #define MIN_SOFTWARE_ENDSTOP_X
-  #define MIN_SOFTWARE_ENDSTOP_Y
-  #define MIN_SOFTWARE_ENDSTOP_Z
+  #define MIN_SOFTWARE_ENDSTOP_X true
+  #define MIN_SOFTWARE_ENDSTOP_Y true
+  #define MIN_SOFTWARE_ENDSTOP_Z true
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
 #define MAX_SOFTWARE_ENDSTOPS
 #if ENABLED(MAX_SOFTWARE_ENDSTOPS)
-  #define MAX_SOFTWARE_ENDSTOP_X
-  #define MAX_SOFTWARE_ENDSTOP_Y
-  #define MAX_SOFTWARE_ENDSTOP_Z
+  #define MAX_SOFTWARE_ENDSTOP_X true
+  #define MAX_SOFTWARE_ENDSTOP_Y true
+  #define MAX_SOFTWARE_ENDSTOP_Z true
 #endif
 
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS) || ENABLED(MAX_SOFTWARE_ENDSTOPS)
@@ -972,7 +1037,7 @@
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
 //#define AUTO_BED_LEVELING_UBL
-//#define MESH_BED_LEVELING
+// #define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
@@ -1002,7 +1067,11 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
+<<<<<<< HEAD
   //#define G26_MESH_VALIDATION
+=======
+  //#define G26_MESH_VALIDATION   // Enable G26 mesh validation
+>>>>>>> develop
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
@@ -1143,9 +1212,15 @@
   #define Z_SAFE_HOMING_Y_POINT ((Y_BED_SIZE) / 2)    // Y point for Z homing when homing all axes (G28).
 #endif
 
+<<<<<<< HEAD
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
 #define HOMING_FEEDRATE_Z  (8*60)
+=======
+// Homing speeds (mm/min)
+#define HOMING_FEEDRATE_XY (40*60)
+#define HOMING_FEEDRATE_Z  (4*60)
+>>>>>>> develop
 
 // @section calibrate
 
@@ -1218,7 +1293,11 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //
+<<<<<<< HEAD
 #define EEPROM_SETTINGS // Enable for M500 and M501 commands
+=======
+#define EEPROM_SETTINGS   // Enable for M500 and M501 commands
+>>>>>>> develop
 //#define DISABLE_M503    // Saves ~2700 bytes of PROGMEM. Disable for release!
 #define EEPROM_CHITCHAT   // Give feedback on EEPROM commands. Disable to save PROGMEM.
 
@@ -1250,6 +1329,7 @@
 // @section temperature
 
 // Preheat Constants
+<<<<<<< HEAD
 #define PREHEAT_1_TEMP_HOTEND 210
 #define PREHEAT_1_TEMP_BED     55
 #define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
@@ -1257,6 +1337,15 @@
 #define PREHEAT_2_TEMP_HOTEND 230
 #define PREHEAT_2_TEMP_BED    120
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
+=======
+#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_BED     55
+#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
+
+#define PREHEAT_2_TEMP_HOTEND 200
+#define PREHEAT_2_TEMP_BED     55
+#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
+>>>>>>> develop
 
 /**
  * Nozzle Park
@@ -1415,6 +1504,22 @@
 #define DISPLAY_CHARSET_HD44780 JAPANESE
 
 /**
+<<<<<<< HEAD
+=======
+ * LCD TYPE
+ *
+ * Enable ULTRA_LCD for a 16x2, 16x4, 20x2, or 20x4 character-based LCD.
+ * Enable DOGLCD for a 128x64 (ST7565R) Full Graphical Display.
+ * (These options will be enabled automatically for most displays.)
+ *
+ * IMPORTANT: The U8glib library is required for Full Graphic Display!
+ *            https://github.com/olikraus/U8glib_Arduino
+ */
+#define ULTRA_LCD   // Character based
+//#define DOGLCD      // Full graphics display
+
+/**
+>>>>>>> develop
  * SD CARD
  *
  * SD Card support is disabled by default. If your controller has an SD slot,
@@ -1512,11 +1617,14 @@
 //
 //#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
 //#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+<<<<<<< HEAD
 
 //=============================================================================
 //======================== LCD / Controller Selection =========================
 //========================   (Character-based LCDs)   =========================
 //=============================================================================
+=======
+>>>>>>> develop
 
 //
 // RepRapDiscount Smart Controller.
@@ -1551,6 +1659,31 @@
 //#define G3D_PANEL
 
 //
+<<<<<<< HEAD
+=======
+// RepRapDiscount FULL GRAPHIC Smart Controller
+// http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
+//
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
+//
+// MakerLab Mini Panel with graphic
+// controller and SD support - http://reprap.org/wiki/Mini_panel
+//
+//#define MINIPANEL
+
+//
+// RepRapWorld REPRAPWORLD_KEYPAD v1.1
+// http://reprapworld.com/?products_details&products_id=202&cPath=1591_1626
+//
+// REPRAPWORLD_KEYPAD_MOVE_STEP sets how much should the robot move when a key
+// is pressed, a value of 10.0 means 10mm per click.
+//
+//#define REPRAPWORLD_KEYPAD
+//#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0
+
+//
+>>>>>>> develop
 // RigidBot Panel V1.0
 // http://www.inventapart.com/
 //
@@ -1743,6 +1876,7 @@
 //#define CR10_STOCKDISPLAY
 
 //
+<<<<<<< HEAD
 // ANET and Tronxy Graphical Controller
 //
 //#define ANET_FULL_GRAPHICS_LCD  // Anet 128x64 full graphics lcd with rotary encoder as used on Anet A6
@@ -1750,6 +1884,8 @@
                                   // different pins/wiring (see pins_ANET_10.h).
 
 //
+=======
+>>>>>>> develop
 // MKS OLED 1.3" 128 × 64 FULL GRAPHICS CONTROLLER
 // http://reprap.org/wiki/MKS_12864OLED
 //
@@ -1763,6 +1899,7 @@
 // http://github.com/android444/Silvergate
 //
 //#define SILVER_GATE_GLCD_CONTROLLER
+
 
 //=============================================================================
 //============================  Other Controllers  ============================
@@ -1810,7 +1947,7 @@
 // affecting heaters, and the fan if FAN_SOFT_PWM is enabled.
 // However, control resolution will be halved for each increment;
 // at zero value, there are 128 effective control positions.
-#define SOFT_PWM_SCALE 0
+// #define SOFT_PWM_SCALE 0
 
 // If SOFT_PWM_SCALE is set to a value higher than 0, dithering can
 // be used to mitigate the associated resolution loss. If enabled,
